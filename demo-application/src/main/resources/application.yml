@@ -1,0 +1,30 @@
+multitenancy:
+  enabled: true
+  tenants:
+    - id: tenant1
+      url: "${SPRING_DATASOURCE_URL_BASE:jdbc:postgresql://db:5432/}tenant1_db"
+      username: "${POSTGRES_USER:user}"
+      password: "${POSTGRES_PASSWORD:password}"
+    - id: tenant2
+      url: "${SPRING_DATASOURCE_URL_BASE:jdbc:postgresql://db:5432/}tenant2_db"
+      username: "${POSTGRES_USER:user}"
+      password: "${POSTGRES_PASSWORD:password}"
+    - id: tenant3
+      url: "${SPRING_DATASOURCE_URL_BASE:jdbc:postgresql://db:5432/}tenant3_db"
+      username: "${POSTGRES_USER:user}"
+      password: "${POSTGRES_PASSWORD:password}"
+
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: ALWAYS
